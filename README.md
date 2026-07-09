@@ -103,6 +103,23 @@ flowchart TD
     G1 --> D5
 ```
 
+## Orchestration
+
+The full pipeline runs on a weekly schedule via Databricks Workflows.
+
+![Workflow DAG](screenshots/scheduletriggersettings.png)
+
+All four Bronze ingestion tasks run in parallel. Silver tasks run after
+their respective Bronze dependencies complete. Gold scoring runs only
+after all four Silver fact tables are ready. The test suite runs last
+and fails the job if any data quality assertion does not pass.
+
+![Workflow DAG](screenshots/viewofthedagstasksbuilt.png)
+
+The pipeline is set on failure and incase of failure, the notification will be sent on my email address
+
+![Workflow DAG](screenshots/emailfromdatabricksforemailsubscriptiononpipelinefailure.png)
+
 ---
 
 ## The Four Data Sources
