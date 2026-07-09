@@ -1,0 +1,5 @@
+# EconMate — Python dependencies
+# Databricks Runtime 15.4 LTS pre-installs PySpark, Delta Lake, and dbutils.
+# The only additional library used in this project is requests.
+
+requests==2.31.0
