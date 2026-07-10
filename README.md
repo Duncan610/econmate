@@ -258,6 +258,7 @@ Four domains, four different units, GDP in USD, precipitation in mm, temperature
 
 ### Decision 7: Food security weighted highest at 35%
 When people cannot eat, crisis has already arrived; no other signal is needed. GDP decline, drought, and population pressure are leading indicators that precede food crises. Food insecurity is the crisis itself. The 35% weight reflects that hierarchy.
+
 ---
 
 ## What Surprised Me
@@ -275,6 +276,9 @@ I re-ran notebook cells more times than I can count during development. Without 
 Discovering that DBFS was disabled midway through the project felt like a setback. It was not. It forced a migration to Unity Catalog that I would have needed to do eventually anyway, and it taught me that the storage layer is an architectural decision, not a given. 
 **5. The story in the data is real.**
 Kenya at 73.35 HIGH RISK is not a number produced by an algorithm. It is a reflection of 36.8% undernourishment, a persistently low GDP, and a rural population with high climate exposure. Zambia's worsening is not a flag; it is a trend that real people are living through right now. Building this pipeline made the abstraction of "data engineering" feel like something closer to responsibility.
+
+
+Sensitivity analysis across four alternative weight configurations confirms the index is structurally robust. Testing equal weights (25% each domain), a climate-heavy configuration (35% climate), and an economic-heavy configuration (40% economic) against the production food-heavy weights (35% food) consistently returned Kenya and Zambia as the two most vulnerable countries — and South Africa as the least vulnerable — across every configuration tested. The specific scores shift slightly between configurations, but the relative ordering of the most and least vulnerable countries does not change. This means the HIGH RISK classification assigned to Kenya and Zambia is not an artefact of choosing 35% for food security — it reflects a structural reality that holds regardless of how the domain weights are tuned. The index is answering a real signal in the data, not amplifying a modelling assumption.
 
 ---
 
